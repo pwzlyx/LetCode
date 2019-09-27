@@ -6,11 +6,11 @@ public class ListNode {
     public ListNode next;
     public ListNode(int x) {this.val = x;}
 
-    public void add(ListNode head, int x){
+    public static void add(ListNode head, int x){
         ListNode p = head;
-        if (head == null){
-            head = new ListNode(x);
-            head.next = null;
+        if (p == null){
+            p = new ListNode(x);
+            p.next = null;
         }else{
             while (p.next != null){
                 p = p.next;

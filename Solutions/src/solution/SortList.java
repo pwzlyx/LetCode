@@ -33,37 +33,22 @@ public class SortList {
     }
 
     private ListNode mergeList(ListNode list1, ListNode list2) {
-        if (null == list1){
-            return list2;
-        }
-        if (null == list2){
-            return  list1;
-        }
-        ListNode head = null;
-        if (list1.val < list2.val){
-            head = list1;
-            list1 = list1.next;
-        }else {
-            head = list2;
-            list2 = list2.next;
-        }
-        ListNode tail = head;
+
+        ListNode prehead = new ListNode(-1);
+        ListNode prev = prehead;
+
         while (list1 != null && list2 != null){
             if (list1.val < list2.val){
-                tail.next = list1;
-                tail = tail.next;
-                tail.next = null;
+                prev.next = list1;
                 list1 = list1.next;
-            }
-            else{
-                tail.next = list1;
-                tail = tail.next;
-                tail.next = null;
+            }else{
+                prev.next = list2;
                 list2 = list2.next;
             }
+            prev = prev.next;
         }
-        tail.next = list1 == null ? list2 : list1;
-        return head;
+        prev.next = list1 == null ? list2 : list1;
+        return prehead.next;
     }
 
     public static void main(String[] args) {
